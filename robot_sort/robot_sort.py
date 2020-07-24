@@ -96,9 +96,78 @@ class SortingRobot:
         """
         Sort the robot's list.
         """
-        # Fill this out
-        pass
+        # I do not access to the full list
+        # I only have access to my current position and can move right or left
+        # My start position is 0
+        # My start item is None
+        # My start light is "OFF"
 
+        # loop through all elements
+        
+        # order elements from first to last
+        # first element is already ordered
+
+        # move to next element
+        while self.move_right():
+            # swap and leave None in that element position (that is going to be how I know when I get to the last ordered element)
+            self.swap_item()
+
+            # find the correct postion for current item in the ordered part of the list
+            # move left until item is bigger than compared item (compare method returns 1) OR reach begining of list
+            while self.move_left():
+                if self.compare_item() == 1:
+                    # item is bigger than the one compared. This items position is next to the compered item
+                    self.move_right() # to the item's right/correct position in the ordered list
+                    break
+            
+            # Move all ordered elements that are bigger than current item to the right
+            # swap and move to right until compare with None
+            while True:
+                self.swap_item()
+
+                # last ordered element
+                if self.compare_item() == None:
+                    break
+
+                self.move_right()
+            
+            # AT THIS POINT 
+            # - item should be None
+            # - all items from the begining of list to this position should be ordered
+            # repeat same process to next item on the right (Outer while loop is doing this)
+        
+            #_______________________________
+
+            # While can move right
+            # while self.can_move_right():
+            #     # Get first item - swap
+            #     self.swap_item()
+                
+            #     # Move right
+            #     self.move_right()
+
+            #     # Compare held item with item in current position
+            #     if self.compare_item() == 1:
+            #         # If held item > than item in position:
+            #         # swap items
+            #         self.swap_item()
+
+            #         while self.can_move_left():
+
+                
+            #     # Go back to previous position
+            #     self.move_left()
+            #     # Put held item back in list - Swap
+            #     self.swap_item()
+            #     # Move right and repeat the whole process
+            #     self.move_right()
+            
+            # move left until compare returns None
+            # move right
+
+            # problems: 
+            # - performance 
+            # - Not able to know when stop without a variable
 
 if __name__ == "__main__":
     # Test our your implementation from the command line
